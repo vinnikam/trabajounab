@@ -1,5 +1,7 @@
 package solucion;
 
+import java.io.IOException;
+import java.math.MathContext;
 import java.util.Scanner;
 
 /**
@@ -51,6 +53,11 @@ public class Principal {
         System.out.println("El resultado de sumar (2)" + num11.intValue() + " + " + num22 + " es " + rta);
 
         System.out.println("Finalizando operacion ");
+        
+        
+        
+        
     }
+    
 
 }

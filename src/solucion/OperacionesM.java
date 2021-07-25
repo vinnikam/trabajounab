@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class OperacionesM {
     
-    public int sumar(int num1, int num2){
+    public Double sumar(double num1, double num2){
         return num1+num2;
     }
     
@@ -45,11 +45,47 @@ public class OperacionesM {
                 valorleido = lector.next();
                 num1 = Integer.parseInt(valorleido);
                 
-            }catch(NumberFormatException e){
+            }catch(NumberFormatException mismsalkd){
                 num1= -1;
+                //System.out.println(mismsalkd.getMessage());
+                //mismsalkd.printStackTrace();
+                
             }
             
         }while(num1<0);
+        return num1;
+    }
+    public Double leerNumeroCQ(String mensaje){
+        Scanner lector = new Scanner(System.in);
+        Double num1 = null;
+        String valorleido;
+        while(num1 == null){
+            System.out.print(mensaje);
+            try {
+                valorleido = lector.next();
+                num1 = Double.parseDouble(valorleido);                
+            }catch(NumberFormatException mismsalkd){
+                num1 = null;
+                //System.out.println(mismsalkd.getMessage());
+                //mismsalkd.printStackTrace();
+            }
+        }
+        return num1;
+    }
+    public double leerNumeroCQ1(String mensaje){
+        Scanner lector = new Scanner(System.in);
+        Double num1 = null;
+        String valorleido;
+        do{
+            System.out.print(mensaje);
+            try {
+                valorleido = lector.next();
+                num1 = Double.parseDouble(valorleido);
+                
+            }catch(NumberFormatException mismsalkd){
+                num1 = null;
+            }
+        }while(num1 == null);
         return num1;
     }
     

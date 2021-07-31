@@ -6,10 +6,10 @@ package solucion;
  */
 public class DatosOpera {
     // atributos 
-    Double operador1;
-    Double operador2;
-    Double respuesta;
-    String nombre;
+    public Double operador1;
+    public Double operador2;
+    public Double respuesta;
+    public String nombre;
     
     public DatosOpera(){
         this.operador1 = 0D;

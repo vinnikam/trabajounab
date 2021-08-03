@@ -14,9 +14,9 @@ import ejemploh.Usuario;
 public class LlamandoClases {
     
     public static void main(String[] args) {
-        Usuario u = new Usuario();
+        Usuario u = new Usuario("Fernando");
         
-        u.asignoaNombre("Fernando");
+        //u.asignarNombre();
         
         
         

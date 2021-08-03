@@ -14,11 +14,44 @@ import java.util.Scanner;
  * @author Vinni
  */
 public class OperacionesM {
-
+    //sobrecarga
     public Double sumar(double num1, double num2) {
         return num1 + num2;
     }
-
+    public Double sumar(double num1, double num2, double num3, double num4) {
+        return num1 + num2+num3+num4;
+    }
+    public Double sumar(double num1, double num2, double num3){
+        return num1 + num2 + num3;
+    }
+    public Double sumar(String num1, String num2) {
+        return new Double(num1) + new Double(num2);
+    }
+    public void enviarMensaje() {
+        ;
+    }
+    //correo
+    public void enviarMensaje(String correo ) {
+        ;
+    }
+    //whatsapp
+    public void enviarMensaje(long numecelular ) {
+        ;
+    }
+    //whatsapp
+    public void enviarMensaje(long numecelular, String mensajepersonal ) {
+        ;
+    }
+    
+    
+    //whatsapp- correo mensaje personal
+    public void enviarMensaje(String correo, long numecelular) {
+        ;
+    }
+    //whatsapp- correo mensaje personal
+    public void enviarMensaje(String correo, long numecelular, String mensajepersonal ) {
+        ;
+    }
     public Double resta(double num1, double num2) {
         return num1 - num2;
     }

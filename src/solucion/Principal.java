@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class Principal {
 
-    public static void main(String[] args) {
+    public static void mainT(String[] args) {
 
         System.out.println("Iniciando operacion ");
         OperacionesM oper = new OperacionesM();
@@ -128,6 +128,16 @@ public class Principal {
         valor = Math.sqrt(4);
         System.out.println("Raiz 4 " + valor);
         util.ejecutaComando("cls");
+    }
+    public static void main(String[] args) {
+        OperacionesM opera = new OperacionesM();
+        Double rta = opera.sumar(3D, 4D);
+        System.out.println(rta);
+        
+        rta = opera.sumar(5, 6, 7);
+        System.out.println(rta);
+        
+        
     }
 
 }

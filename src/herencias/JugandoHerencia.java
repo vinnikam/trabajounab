@@ -5,6 +5,7 @@
  */
 package herencias;
 
+import ejemploh.Usuario;
 import solucion.DatosOpera;
 
 /**
@@ -40,7 +41,9 @@ public class JugandoHerencia {
          mivaquita.numHijos = 0;
          
          System.out.println(mivaquita.toString());
-
+         Usuario u = new Usuario("");
+         u.consultaNombre();
+        
     }
     
 }

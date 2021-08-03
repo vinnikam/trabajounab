@@ -11,12 +11,30 @@ package otros;
  */
 public class PoliciaNacional {
     
-    public PoliciaNacional(String parametro, int num){
-        System.out.println("llego");
+    String nombre;
+    String numeroPlaca;
+    String esposa_o;
+    
+    public PoliciaNacional(String elnombre, String laplaca){
+        this.nombre = elnombre;
+        this.numeroPlaca = laplaca;
+        
     }
+    
+   public String toString(){
+       return "nombre "+nombre+" placa "+numeroPlaca;
+   }
+    
     
     
     public static void main(String[] args) {
-        PoliciaNacional po = new PoliciaNacional("datos del paramtro", 77);
+        PoliciaNacional poli = new PoliciaNacional("Helios", "POLICUN00154");
+//        System.out.println("NO se le olvide colocar nombre y placa cuando use la clase");
+//        poli.nombre = "Helios";
+//        poli.numeroPlaca="POLICUN00154";
+        System.out.println(poli);
+        PoliciaNacional poli1 = new PoliciaNacional("Juanita", "POLIANT00554");
+        System.out.println(poli1);
+        
     }
 }

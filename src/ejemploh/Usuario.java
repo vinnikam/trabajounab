@@ -15,9 +15,18 @@ public class Usuario {
     //private String perfil;
     public Double sueldo;
     
-    public void asignoaNombre(String elnuevovalor){
-        this.nombre = elnuevovalor;
+    
+    public Usuario(String nombre){
+        this.nombre = nombre;
     }
+    public Usuario(String nombre, String apellido){
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+    
+//    public void asignarNombre(String elnuevovalor){
+//        this.nombre = elnuevovalor;
+//    }
     public String consultaNombre(){
         return this.nombre;
     }
@@ -38,8 +47,11 @@ public class Usuario {
         return this.nombre;
     }
     
-    protected void matricularse(String fechapago){
-        System.out.println("Se matriculo");
+    protected void matricularse(String fechaMatricula, long valor){
+        
+        System.out.println(this.nombre+" MATRICULADO SE INSCRIBIO A LA PAGINA WEB EL " + fechaMatricula );
+        valor = 0;
+        System.out.println("valor pagado "+0);
     }
     
     

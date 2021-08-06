@@ -5,10 +5,21 @@
  */
 package parqueo;
 
+import java.util.Date;
+
 /**
  *
  * @author Vinni
  */
 public class Principal {
-    
+    public static void main(String[] args) {
+        System.out.println("Parqueo");
+        Vehiculo moto = new Vehiculo("aaa", "MOTO");
+        
+        Date fecha = new Date();
+        System.out.println(fecha);
+        
+        Parqueadero p = new Parqueadero();
+        p.addMoto(moto);
+    }
 }

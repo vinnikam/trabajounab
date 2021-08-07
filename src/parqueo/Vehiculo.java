@@ -5,7 +5,9 @@
  */
 package parqueo;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -52,7 +54,11 @@ public class Vehiculo {
     }
     
     public long calcularPago(int valorMinuto){
-        int minutos = 34;//difer hrafin-horafin; 
+        
+        long diff = this.horaSalida.getTime() - this.horaEntrada.getTime();
+        long minutos = TimeUnit.MILLISECONDS.toMinutes(diff);
+        
+        //int minutos = 34;//difer hrafin-horafin; 
         this.valorPagar = minutos*valorMinuto;
         return this.valorPagar;
     }

@@ -28,7 +28,8 @@ public class Principal {
         p.imprimeMotos();
         
         p.addMoto(moto1);
-        p.imprimeMotos();
+        
+                
         
         
         

@@ -57,7 +57,9 @@ public class Vehiculo {
         
         long diff = this.horaSalida.getTime() - this.horaEntrada.getTime();
         long minutos = TimeUnit.MILLISECONDS.toMinutes(diff);
-        
+        if (minutos == 0 ){
+            minutos = 1;
+        }
         //int minutos = 34;//difer hrafin-horafin; 
         this.valorPagar = minutos*valorMinuto;
         return this.valorPagar;

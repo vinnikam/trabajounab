@@ -99,6 +99,8 @@ public class Parqueadero {
                 Vehiculo elveh = espaciosC[i];
                 //if (espaciosM[i].consultaPlaca().equals(placa))
                 if (elveh != null && elveh.consultaPlaca().equals(placa)){
+                    Date fecha = new Date();
+                    elveh.asignarHoraSalida(fecha);
                     long valorvehiculo = elveh.calcularPago(valorMinCarro);
                     espaciosC[i] = null;
                     this.valorRecaudado += valorvehiculo;
@@ -147,5 +149,25 @@ public class Parqueadero {
             }
             
         }
+    }
+    
+    public int cuposDisponiblesCarro(){
+        int disponibles = 0;
+        for(int i = 0; i<espaciosC.length;i++){
+            if (espaciosC[i] == null){
+                disponibles++;
+            }
+        }
+        return disponibles;
+    }
+    public int cuposDisponiblesMoto(){
+        int disponibles = 0;
+        for(int i = 0; i<espaciosM.length;i++){
+            if (espaciosM[i] == null){
+                disponibles++;
+            }
+        }
+        return disponibles;
+        
     }
 }

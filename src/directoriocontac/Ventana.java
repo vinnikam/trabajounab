@@ -217,7 +217,7 @@ public class Ventana extends javax.swing.JFrame {
         this.cjContactos.setText("");
         this.cjContactos.append("CONTACTOS - - -\n");
         this.cjContactos.append("FAV\tNOMBRE\t APELLIDO\t TELEFONO\n");
-        
+        //
         for (Contacto contacto : this.milibreta.listar()) {
             String fav = contacto.isFavorito()?"X":" ";
               this.cjContactos.append(fav+"\t"+contacto.getNombre()+"\t"+

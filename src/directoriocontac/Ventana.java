@@ -201,6 +201,7 @@ public class Ventana extends javax.swing.JFrame {
         Contacto cnuevo = new Contacto(nombre, apellido, telefono);
         cnuevo.setEmpresa(empresa);
         cnuevo.setCorreo(correo);
+        cnuevo.setFavorito(this.chFavorito.isSelected());
         
         
         if (milibreta.adicionContacto(cnuevo)){
@@ -215,10 +216,11 @@ public class Ventana extends javax.swing.JFrame {
     private void imprimeContactos(){
         this.cjContactos.setText("");
         this.cjContactos.append("CONTACTOS - - -\n");
-        this.cjContactos.append("NOMBRE\t APELLIDO\t TELEFONO\n");
+        this.cjContactos.append("FAV\tNOMBRE\t APELLIDO\t TELEFONO\n");
         
         for (Contacto contacto : this.milibreta.listar()) {
-              this.cjContactos.append(contacto.getNombre()+"\t"+
+            String fav = contacto.isFavorito()?"X":" ";
+              this.cjContactos.append(fav+"\t"+contacto.getNombre()+"\t"+
                       contacto.getApellido()+"\t "+contacto.getTelefono()+"\n");
 
             //this.cjContactos.append(contacto.toString()+"\n");

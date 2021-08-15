@@ -126,7 +126,17 @@ public class Libreta implements Serializable {
         
         return this.contactos;
     }
-
+    public ArrayList<Contacto> buscarOrdenadoNombre() {
+        
+        Collections.sort(contactos, new Comparator<Contacto>() {
+            @Override
+            public int compare(Contacto c1, Contacto c2) {
+                    return c1.getNombre().compareTo(c2.getNombre());
+            }
+        });
+        
+        return this.contactos;
+    }
     
     private int secuenciaNext(){
         if (this.contactos.isEmpty()){
@@ -135,6 +145,18 @@ public class Libreta implements Serializable {
         ArrayList<Contacto> loscontact = this.buscarOrdenado();
         int secuencia = loscontact.get(loscontact.size()-1).getIdenficador()+1;
         return secuencia;
+    }
+
+    public ArrayList<Contacto> buscarFavoritos() {
+        ArrayList<Contacto> confavo = new ArrayList<>();
+        for (Contacto contacto : this.contactos) {
+            if (contacto.isFavorito()){
+                confavo.add(contacto);
+            }
+            
+        }
+        return confavo;
+      
     }
 
 }

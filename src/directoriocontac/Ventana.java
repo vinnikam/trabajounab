@@ -59,6 +59,8 @@ public class Ventana extends javax.swing.JFrame {
         tContactos = new javax.swing.JTable();
         btAdicionar = new javax.swing.JButton();
         btActualizar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -191,6 +193,24 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().add(btActualizar);
         btActualizar.setBounds(330, 80, 100, 25);
 
+        jButton1.setText("Favoritos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(560, 250, 100, 23);
+
+        jButton2.setText("Todos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(560, 290, 110, 23);
+
         setSize(new java.awt.Dimension(693, 497));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -223,6 +243,16 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.editarContacto();
     }//GEN-LAST:event_btActualizarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.favoritos();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+            // TODO add your handling code here:
+            this.cargarContactos();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,7 +361,7 @@ public class Ventana extends javax.swing.JFrame {
         modelo.addColumn("EMPRESA");
         modelo.addColumn("FAV");
         
-        for (Contacto contacto : this.milibreta.buscarOrdenado()) {
+        for (Contacto contacto : this.milibreta.buscarOrdenadoNombre()) {
             
             Object[] datos = {
                 contacto.getIdenficador(),
@@ -376,6 +406,8 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTextField cjEmpresa;
     private javax.swing.JTextField cjNombre;
     private javax.swing.JTextField cjTelefono;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -388,4 +420,35 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tContactos;
     // End of variables declaration//GEN-END:variables
+
+    private void favoritos() {
+        
+        //String columnas[] = {"ID", "NOMBRE","APELLIDO","TELEFONO", "CORREO", "EMPRESA"};
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("APELLIDO");
+        modelo.addColumn("TELEFONO");
+        modelo.addColumn("CORREO");
+        modelo.addColumn("EMPRESA");
+        modelo.addColumn("FAV");
+        
+        for (Contacto contacto : this.milibreta.buscarFavoritos()) {
+            
+            Object[] datos = {
+                contacto.getIdenficador(),
+                contacto.getNombre(),
+                contacto.getApellido(),
+                contacto.getTelefono(),
+                contacto.getCorreo(),
+                contacto.getEmpresa(),
+                contacto.isFavorito()
+            };
+            modelo.addRow(datos);
+                    
+        }
+        
+        this.tContactos.setModel(modelo);
+    }
 }

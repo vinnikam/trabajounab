@@ -53,6 +53,7 @@ public class UtilidadPersistencia {
             contactosArchivo = (ArrayList<Contacto>)oo.readObject();
             //se cierra archivo
             oo.close();
+            fo.close();
             return contactosArchivo;
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -61,11 +62,6 @@ public class UtilidadPersistencia {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UtilidadPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            try {
-                fo.close();
-            } catch (IOException ex) {
-                
-            }
         }
         return null;
     }

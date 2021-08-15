@@ -8,6 +8,7 @@ import java.io.Serializable;
  * @author Vinni
  */
 public class Contacto implements Serializable{
+    private Integer idenficador;
     private String nombre;
     private String apellido;
     private int telefono;
@@ -22,24 +23,39 @@ public class Contacto implements Serializable{
         this.favorito = false;
     }
 
-    
+    public Integer getIdenficador() {
+        return idenficador;
+    }
+
+    public void setIdenficador(Integer idenficador) {
+        this.idenficador = idenficador;
+    }
+
     public String getNombre() {
         return nombre;
     }
 
-    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getApellido() {
         return apellido;
     }
 
-    
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
     public int getTelefono() {
         return telefono;
     }
 
-    
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
 
+    
     public String getCorreo() {
         return correo;
     }
@@ -66,7 +82,7 @@ public class Contacto implements Serializable{
 
     @Override
     public String toString() {
-        return "Contacto{" + "nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", correo=" + correo + ", empresa=" + empresa + ", favorito=" + favorito + '}';
+        return "Contacto{" +idenficador+ "nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", correo=" + correo + ", empresa=" + empresa + ", favorito=" + favorito + '}';
     }
 
     

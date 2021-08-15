@@ -6,6 +6,7 @@
 package directoriocontac;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,12 +14,16 @@ import javax.swing.JOptionPane;
  */
 public class Ventana extends javax.swing.JFrame {
     private Libreta milibreta = new Libreta();
+    private Contacto contactobuscado;
 
     /**
      * Creates new form Ventana
      */
     public Ventana() {
         initComponents();
+        this.cargarContactos();
+        this.cjContactos.setVisible(false);
+        this.jScrollPane1.setVisible(false);
         
         this.imprimeContactos();
     }
@@ -45,11 +50,15 @@ public class Ventana extends javax.swing.JFrame {
         cjEmpresa = new javax.swing.JTextField();
         cjCorreo = new javax.swing.JTextField();
         chFavorito = new javax.swing.JCheckBox();
-        btAdicionar = new javax.swing.JButton();
+        btBorrar = new javax.swing.JButton();
         btSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         cjContactos = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tContactos = new javax.swing.JTable();
+        btAdicionar = new javax.swing.JButton();
+        btActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -119,6 +128,49 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().add(chFavorito);
         chFavorito.setBounds(130, 210, 80, 23);
 
+        btBorrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btBorrar.setText("Borrar");
+        btBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBorrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btBorrar);
+        btBorrar.setBounds(330, 130, 100, 25);
+
+        btSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btSalir.setText("Salir");
+        btSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btSalir);
+        btSalir.setBounds(560, 170, 100, 25);
+
+        cjContactos.setColumns(20);
+        cjContactos.setRows(5);
+        jScrollPane1.setViewportView(cjContactos);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(520, 30, 140, 110);
+
+        jLabel8.setBackground(new java.awt.Color(0, 0, 153));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Libreta");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(170, 10, 60, 22);
+
+        tContactos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tContactosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tContactos);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(100, 290, 452, 130);
+
         btAdicionar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btAdicionar.setText("Adicionar");
         btAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,30 +181,17 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().add(btAdicionar);
         btAdicionar.setBounds(40, 250, 100, 25);
 
-        btSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btSalir.setText("Salir");
-        btSalir.addActionListener(new java.awt.event.ActionListener() {
+        btActualizar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btActualizar.setText("Actualizar");
+        btActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalirActionPerformed(evt);
+                btActualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(btSalir);
-        btSalir.setBounds(560, 290, 100, 25);
+        getContentPane().add(btActualizar);
+        btActualizar.setBounds(330, 80, 100, 25);
 
-        cjContactos.setColumns(20);
-        cjContactos.setRows(5);
-        jScrollPane1.setViewportView(cjContactos);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(316, 30, 320, 250);
-
-        jLabel8.setBackground(new java.awt.Color(0, 0, 153));
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("Libreta");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(170, 10, 60, 22);
-
-        setSize(new java.awt.Dimension(693, 360));
+        setSize(new java.awt.Dimension(693, 497));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -165,10 +204,25 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btSalirActionPerformed
 
+    private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
+        // TODO add your handling code here:
+        this.borrarContacto();
+    }//GEN-LAST:event_btBorrarActionPerformed
+
+    private void tContactosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tContactosMouseClicked
+        // TODO add your handling code here:
+        this.seleccionoFila();
+    }//GEN-LAST:event_tContactosMouseClicked
+
     private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
         // TODO add your handling code here:
         this.adicionarContacto();
     }//GEN-LAST:event_btAdicionarActionPerformed
+
+    private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
+        // TODO add your handling code here:
+        this.editarContacto();
+    }//GEN-LAST:event_btActualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,40 +264,110 @@ public class Ventana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No creo el contacto");
         }
         this.imprimeContactos();
+        cargarContactos();
         
         
     }
     private void imprimeContactos(){
         this.cjContactos.setText("");
         this.cjContactos.append("CONTACTOS - - -\n");
-        this.cjContactos.append("FAV\tNOMBRE\t APELLIDO\t TELEFONO\n");
+        this.cjContactos.append("ID\tFAV\tNOMBRE\t APELLIDO\t TELEFONO\n");
         //
         for (Contacto contacto : this.milibreta.listar()) {
             String fav = contacto.isFavorito()?"X":" ";
-              this.cjContactos.append(fav+"\t"+contacto.getNombre()+"\t"+
+              this.cjContactos.append(contacto.getIdenficador().toString()+"\t"+fav+"\t"+contacto.getNombre()+"\t"+
                       contacto.getApellido()+"\t "+contacto.getTelefono()+"\n");
 
             //this.cjContactos.append(contacto.toString()+"\n");
         }
     }
-            
-    private void consultarContacto(){
-        
-    }
+    
     private void consultarOrdenadoContacto(){
         
     }
     private void editarContacto(){
+        if (contactobuscado != null){
+            String nombre = cjNombre.getText();
+            String apellido = cjApellido.getText();
+            String correo = cjCorreo.getText();
+            String empresa = cjEmpresa.getText();
+            String telefonoS = cjTelefono.getText();
+            Integer telefono = Integer.parseInt(telefonoS);
+
+            contactobuscado.setNombre(nombre);
+            contactobuscado.setApellido(apellido);
+            contactobuscado.setTelefono(telefono);
+            contactobuscado.setEmpresa(empresa);
+            contactobuscado.setCorreo(correo);
+            contactobuscado.setFavorito(this.chFavorito.isSelected());            
+            this.milibreta.editarContacto(contactobuscado);
+            JOptionPane.showMessageDialog(this, "Actualizo a "+contactobuscado.getNombre());
+            cargarContactos();
+            
+        }
         
     }
     private void borrarContacto(){
+        if (contactobuscado!= null){
+            this.milibreta.borrarContacto(contactobuscado);
+            JOptionPane.showMessageDialog(this, "Borro a "+contactobuscado.getNombre());
+            cargarContactos();
+        }
         
     }
     private void salir(){
         System.exit(0);
     }
+    
+    private void cargarContactos(){
+        //String columnas[] = {"ID", "NOMBRE","APELLIDO","TELEFONO", "CORREO", "EMPRESA"};
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("APELLIDO");
+        modelo.addColumn("TELEFONO");
+        modelo.addColumn("CORREO");
+        modelo.addColumn("EMPRESA");
+        modelo.addColumn("FAV");
+        
+        for (Contacto contacto : this.milibreta.buscarOrdenado()) {
+            
+            Object[] datos = {
+                contacto.getIdenficador(),
+                contacto.getNombre(),
+                contacto.getApellido(),
+                contacto.getTelefono(),
+                contacto.getCorreo(),
+                contacto.getEmpresa(),
+                contacto.isFavorito()
+            };
+            modelo.addRow(datos);
+                    
+        }
+        
+        this.tContactos.setModel(modelo);
+        
+        
+    }
+    private void seleccionoFila(){
+        int fila = tContactos.getSelectedRow();
+        Integer identificacion = (Integer)tContactos.getValueAt(fila, 0);
+        contactobuscado = this.milibreta.buscarContacto(identificacion);
+        if (contactobuscado != null){
+            this.cjNombre.setText(contactobuscado.getNombre());
+            this.cjApellido.setText(contactobuscado.getApellido());
+            this.cjEmpresa.setText(contactobuscado.getEmpresa());
+            this.cjCorreo.setText(contactobuscado.getCorreo());
+            this.cjTelefono.setText(""+contactobuscado.getTelefono());
+            this.chFavorito.setSelected(contactobuscado.isFavorito());
+        }
+                
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btActualizar;
     private javax.swing.JButton btAdicionar;
+    private javax.swing.JButton btBorrar;
     private javax.swing.JButton btSalir;
     private javax.swing.JCheckBox chFavorito;
     private javax.swing.JTextField cjApellido;
@@ -261,5 +385,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tContactos;
     // End of variables declaration//GEN-END:variables
 }

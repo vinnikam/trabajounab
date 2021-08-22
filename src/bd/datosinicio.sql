@@ -30,10 +30,10 @@ CREATE TABLE contactos (
     favorito boolean);
 
 -- INSERCION
-insert into contactos (nombre,apellidos, correo, empresa, telefono, favorito) 
+insert into contactos (nombre,apellido, correo, empresa, telefono, favorito) 
 values ('helios', 'fernandez', 'c@', 'rcn', 123, true);
 
-select * from contactos;
+select * from contactos where identificador = 3;
 
 select nombre, correo from contactos;
 
@@ -45,7 +45,7 @@ where telefono = 123;
 update contactos set nombre = 'jorge'
 where telefono = 123;
 
-update contactos set nombre = 'PABLO'
+update contactos set nombre = 'PABLO', apellidos = '', correo = '', empresa = '', telefono = 0, favorito = true
 where identificador = 3;
 
 

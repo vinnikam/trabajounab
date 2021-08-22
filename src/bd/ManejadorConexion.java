@@ -44,4 +44,11 @@ public class ManejadorConexion {
         
         return null;
     }
+    public void cerrarConexAct(Connection conex){
+        try {
+            conex.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorConexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

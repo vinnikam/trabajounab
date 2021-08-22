@@ -13,7 +13,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Vinni
  */
 public class Ventana extends javax.swing.JFrame {
-    private Libreta milibreta = new Libreta();
+    //private Libreta milibreta = new Libreta();
+    private LibretaBD milibreta = new LibretaBD();
     private Contacto contactobuscado;
 
     /**

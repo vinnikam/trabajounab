@@ -28,7 +28,7 @@ public class OperacionesConductor {
             
             try {
                 PreparedStatement ps  = cActiva.prepareStatement(SQL_INSERT);
-                ps.setString(1, dato.getNombre());
+                ps.setString(1, dato.getNombre().toUpperCase());
                 ps.setString(2, dato.getLicencia());
                 ps.setLong(3, dato.getIdentificacion());
                 ps.setLong(4, dato.getVehiculo().getId());

@@ -14,6 +14,10 @@ public class Silla {
     private double precio;
     private double valor;
     private String codigo;
+    private boolean trespm;
+    private boolean reserva; 
+    private boolean masdos;
+    private boolean ultimas10;
     
     
     public Silla(int tipo) {
@@ -24,12 +28,14 @@ public class Silla {
             this.valor = 8500;
         }
     }
-    public double valorPagar(boolean trespm, boolean reserva, boolean masdos, boolean ultimas10){
+    public double valorPagar(){
         this.precio = 0;
-        if (trespm && tipo == 1){
-            this.precio += 200;
+        if (trespm ){
+            this.precio -= 200;
         }
-        
+        if (this.ultimas10){
+            this.precio-=300;
+        }
         this.precio +=this.valor;
         return this.precio;
     }
@@ -56,6 +62,38 @@ public class Silla {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public boolean isTrespm() {
+        return trespm;
+    }
+
+    public void setTrespm(boolean trespm) {
+        this.trespm = trespm;
+    }
+
+    public boolean isReserva() {
+        return reserva;
+    }
+
+    public void setReserva(boolean reserva) {
+        this.reserva = reserva;
+    }
+
+    public boolean isMasdos() {
+        return masdos;
+    }
+
+    public void setMasdos(boolean masdos) {
+        this.masdos = masdos;
+    }
+
+    public boolean isUltimas10() {
+        return ultimas10;
+    }
+
+    public void setUltimas10(boolean ultimas10) {
+        this.ultimas10 = ultimas10;
     }
     
     

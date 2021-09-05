@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Vinni
  */
 public class Sala {
+   
     private ArrayList<Silla> sillaPRE;
     private ArrayList<Silla> sillaGEN;
     private int tamsillasPRE;
@@ -23,6 +24,9 @@ public class Sala {
         this.tamsillasGEN = tamsillasGEN;
         this.tamsillasPRE = tamsillasPRE;
     }
+
+    
+    
     public int disponiblesGEN(){
         return this.tamsillasGEN-this.sillaGEN.size();
     }

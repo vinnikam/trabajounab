@@ -39,14 +39,22 @@ public class SalasMap {
             
         }
     }
-    public boolean asignarSillaGen (String codSilla, Silla lasilla){
+    public boolean asignarSilla(String codSilla, Silla lasilla){
+        if (codSilla.contains("GEN")){
+            return asignarSillaGen(codSilla, lasilla);
+        }else{
+            return asignarSillaPre(codSilla, lasilla);
+        }
+        
+    }
+    private boolean asignarSillaGen (String codSilla, Silla lasilla){
         if (this.sillasGEN.get(codSilla) == null){
             this.sillasGEN.put(codSilla, lasilla);
             return true;
         }
         return false;
     }
-    public boolean asignarSillaPre (String codSilla, Silla lasilla){
+    private boolean asignarSillaPre (String codSilla, Silla lasilla){
         if (this.sillasPRE.get(codSilla) == null){
             this.sillasPRE.put(codSilla, lasilla);
             return true;
@@ -68,6 +76,42 @@ public class SalasMap {
             }
         }
         return codigos;
+    }
+    public ArrayList<String> ocupadosPRE(){
+        ArrayList<String> codigos = new ArrayList<>();
+        Set<String> codigoSilla = this.sillasPRE.keySet();
+        codigoSilla = this.sillasPRE.keySet();
+        for (String cod : codigoSilla) {
+            if (this.sillasPRE.get(cod) != null){
+                codigos.add(cod);
+            }
+        }
+        return codigos;
+    }
+    public ArrayList<String> ocupadosGEN(){
+        ArrayList<String> codigos = new ArrayList<>();
+        Set<String> codigoSilla = this.sillasGEN.keySet();
+        for (String cod : codigoSilla) {
+            if (this.sillasGEN.get(cod) != null){
+                codigos.add(cod);
+            }
+        }
+        
+        return codigos;
+    }
+    public double calculaRecaudo(){
+        double totales= 0;
+        ArrayList<String> llaves = this.ocupadosPRE();
+        for (String llave : llaves) {
+            totales +=this.sillasPRE.get(llave).valorPagar();
+            
+        }
+        llaves = this.ocupadosGEN();
+        for (String llave : llaves) {
+            totales +=this.sillasGEN.get(llave).valorPagar();
+            
+        }
+        return totales;
     }
     public static void main(String[] args) {
         SalasMap lassalas = new SalasMap(5, 10);
